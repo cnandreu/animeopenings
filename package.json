@@ -1,0 +1,25 @@
+{
+  "name": "AnimeOpenings",
+  "version": "1.0.0",
+  "description": "A native wrapper for openings.moe",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnandreu/animeopenings.git"
+  },
+  "keywords": [
+    "Anime"
+  ],
+  "author": "Carlos Andreu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cnandreu/animeopenings/issues"
+  },
+  "homepage": "https://github.com/cnandreu/animeopenings#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  }
+}
