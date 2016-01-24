@@ -1,6 +1,6 @@
 {
   "name": "AnimeOpenings",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A native wrapper for openings.moe",
   "main": "main.js",
   "scripts": {
