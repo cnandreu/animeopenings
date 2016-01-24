@@ -33,3 +33,8 @@ This project not affiliated in any way with openings.moe. The icon used for the 
 * `npm run build` (if you want to build the application, built files will be inside `animeopenings/build`)
 
 You will need [Node.js and npm](https://nodejs.org/en/). This application is built with [Electron](http://electron.atom.io/#get-started).
+
+# Known Issues
+
+* Creating playlists cause the application to crash.
+* Navigating away from the main page causes notifications to stop working.
