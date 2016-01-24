@@ -1,7 +1,7 @@
 
 # AnimeOpenings
 
-Simple wrapper for openings.moe. This project not affiliated in any way with openings.moe.
+Simple wrapper for openings.moe. This project not affiliated in any way with openings.moe. The icon used for the application is from [Anime Icons Pack 6 of 6](http://exo-02.deviantart.com/art/Anime-Icons-Pack-6-of-6-157430877) by [EXO-02](http://exo-02.deviantart.com/).
 
 # Features
 
