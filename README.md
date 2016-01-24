@@ -14,6 +14,7 @@ Simple wrapper for openings.moe. This project not affiliated in any way with ope
 * `git clone [this repository]`
 * `cd animeopenings`
 * `npm install`
-* `npm start`
+* `npm start` (if you want to run as a developer)
+* `npm run build` (if you want to build the application, built files will be inside `animeopenings/build`)
 
 You will need [Node.js and npm](https://nodejs.org/en/). This application is built with [Electron](http://electron.atom.io/#get-started).
