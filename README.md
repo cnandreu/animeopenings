@@ -5,9 +5,9 @@ Simple wrapper for openings.moe. This project not affiliated in any way with ope
 
 # Features
 
-✔ Global mac media keys support for Play/Pause and Next Track.
-✔ Native notifications when song changes.
-✔ Native container.
+* Global mac media keys support for Play/Pause and Next Track.
+* Native notifications when song changes.
+* Native container.
 
 # How to run
 
