@@ -13,7 +13,8 @@ This project not affiliated in any way with openings.moe. The icon used for the 
 * Download `AnimeOpenings-darwin-x64.zip`.
 * Extract and move `AnimeOpenings.app` to your `Applications` folder.
 * Right click the recently moved file and hit "Open".
-* FYI - [Fix the “App can’t be opened because it is from an unidentified developer” Error in Mac OS X](http://osxdaily.com/2012/07/27/app-cant-be-opened-because-it-is-from-an-unidentified-developer/)
+* FYI - [Fix the “App can’t be opened because it is from an unidentified developer” Error in Mac OS X](http://osxdaily.com/2012/07/27/app-cant-be-opened-because-it-is-from-an-unidentified-developer/).
+* FYI - By default videos will loop, if you want to get new videos click on the toogle (bottom left side of the screen).
 
 # Features
 
