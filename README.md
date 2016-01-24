@@ -9,9 +9,11 @@ This project not affiliated in any way with openings.moe. The icon used for the 
 
 # Features
 
+* Native container (no need to find it in a sea of tabs!).
 * Global mac media keys support for Play/Pause and Next Track.
 * Native notifications when song changes.
-* Native container.
+* Remembers window position.
+* Runs in the background when closed (use `⌘+Q` or `AnimeOpenings > Quit` to kill).
 
 # How to run
 
