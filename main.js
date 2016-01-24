@@ -1,69 +1,106 @@
 
-'use strict';
+'use strict'
 
-const fs = require('fs');
-const path = require('path');
-const electron = require('electron');
-const app = electron.app;
-const globalShortcut = electron.globalShortcut;
-const BrowserWindow = electron.BrowserWindow;
+const fs = require('fs')
+const path = require('path')
+const windowStateKeeper = require('electron-window-state')
+const electron = require('electron')
+const app = electron.app
+const globalShortcut = electron.globalShortcut
+const BrowserWindow = electron.BrowserWindow
+const createMenu = require('./menu')
 
-const pathToChanges = path.join(__dirname, "changes.js");
-const contentsOfChangesJs = fs.readFileSync(pathToChanges).toString();
+const pathToChanges = path.join(__dirname, 'changes.js')
+const contentsOfChangesJs = fs.readFileSync(pathToChanges).toString()
 
-let mainWindow;
+let mainWindow
+
+function isOSX () {
+  return process.platform === 'darwin'
+}
+
+function maybeHideWindow (window, event) {
+  if (isOSX()) {
+    event.preventDefault()
+    window.hide()
+  }
+}
 
 function createWindow () {
+  const mainWindowState = windowStateKeeper({
+    defaultWidth: 800,
+    defaultHeight: 600
+  })
 
   mainWindow = new BrowserWindow({
-    width: 800, 
-    height: 600, 
-    show: true, 
+    width: mainWindowState.width,
+    height: mainWindowState.height,
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    show: true,
     'node-integration': false
-  });
+  })
 
-  mainWindow.loadURL('http://openings.moe');
+  createMenu(
+    app.quit,
+    mainWindow.webContents.goBack,
+    mainWindow.webContents.goForward
+  )
+
+  mainWindow.loadURL('http://openings.moe')
 
   // Available shortcuts:
   // https://github.com/atom/electron/blob/master/docs/api/accelerator.md
-  globalShortcut.register('MediaPlayPause', function() {
-    mainWindow.webContents.executeJavaScript("playPause()");
-  });
+  globalShortcut.register('MediaPlayPause', () => {
+    mainWindow.webContents.executeJavaScript('playPause()')
+  })
 
-  globalShortcut.register('MediaNextTrack', function() {
-    mainWindow.webContents.executeJavaScript("retrieveNewVideo()");
-  });
+  globalShortcut.register('MediaNextTrack', () => {
+    mainWindow.webContents.executeJavaScript('retrieveNewVideo()')
+  })
 
-  //mainWindow.webContents.openDevTools();
+  mainWindow.on('closed', () => {
+    mainWindow = null
+  })
 
-  mainWindow.on('closed', function() {
-    mainWindow = null;
-  });
+  mainWindow.webContents.executeJavaScript(contentsOfChangesJs)
 
-  mainWindow.webContents.executeJavaScript(contentsOfChangesJs);
+  mainWindow.on('close', (event) => {
+    if (mainWindow.isFullScreen()) {
+      mainWindow.setFullScreen(false)
+      mainWindow.once('leave-full-screen', maybeHideWindow.bind(this, mainWindow, event))
+    }
 
+    maybeHideWindow(mainWindow, event)
+  })
+
+  mainWindowState.manage(mainWindow)
+
+  // mainWindow.webContents.openDevTools()
 }
 
-app.on('ready', createWindow);
+app.on('ready', createWindow)
 
-app.on('will-quit', function() {
-  
-  globalShortcut.unregisterAll();
+app.on('will-quit', () => {
+  globalShortcut.unregisterAll()
+})
 
-});
-
-app.on('window-all-closed', function () {
-  
-  if (process.platform !== 'darwin') {
-    app.quit();
+app.on('window-all-closed', () => {
+  if (!isOSX()) {
+    app.quit()
   }
+})
 
-});
-
-app.on('activate', function () {
-
-  if (mainWindow === null) {
-    createWindow();
+app.on('before-quit', () => {
+  if (isOSX()) {
+    app.exit(0)
   }
+})
 
-});
+app.on('activate', (event, hasVisibleWindows) => {
+  if (isOSX()) {
+    if (!hasVisibleWindows) {
+      mainWindow.show()
+    }
+  }
+})

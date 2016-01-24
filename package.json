@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron main.js",
-    "build": "electron-packager . AnimeOpenings --app-version=1.0.0 --platform=darwin --arch=x64 --out=build --overwrite=true --icon=./assets/icon.icns"
+    "build": "npm run lint && electron-packager . AnimeOpenings --app-version=1.0.0 --platform=darwin --arch=x64 --out=build --overwrite=true --icon=./assets/icon.icns",
+    "lint": "standard --verbose | snazzy"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,9 @@
   "homepage": "https://github.com/cnandreu/animeopenings#readme",
   "devDependencies": {
     "electron-packager": "^5.2.1",
-    "electron-prebuilt": "^0.36.0"
+    "electron-prebuilt": "^0.36.0",
+    "electron-window-state": "^2.0.0",
+    "snazzy": "^2.0.1",
+    "standard": "^5.4.1"
   }
 }
